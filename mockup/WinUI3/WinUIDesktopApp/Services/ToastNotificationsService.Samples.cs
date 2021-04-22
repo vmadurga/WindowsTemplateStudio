@@ -1,5 +1,5 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.UI.Notifications;
+﻿using Windows.UI.Notifications;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace WinUIDesktopApp.Services
 {

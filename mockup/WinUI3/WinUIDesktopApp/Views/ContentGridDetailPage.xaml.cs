@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.WinUI.UI.Animations;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using WinUIDesktopApp.Contracts.Services;

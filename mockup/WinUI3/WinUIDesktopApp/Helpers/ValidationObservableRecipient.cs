@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.UI.Xaml.Data;
 
 namespace WinUIDesktopApp.Helpers
 {
@@ -14,7 +15,7 @@ namespace WinUIDesktopApp.Helpers
 
         public bool HasErrors => _errors.Any();
 
-        public IEnumerable<object> GetErrors(string propertyName)
+        IEnumerable INotifyDataErrorInfo.GetErrors(string propertyName)
             => _errors[propertyName];
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -73,7 +74,7 @@ namespace WinUIDesktopApp.Helpers
                 _errors.Add(propertyName, errors);
             }
             errors.AddRange(validationResults);
-            ErrorsChanged?.Invoke(this, new Microsoft.UI.Xaml.Data.DataErrorsChangedEventArgs(propertyName));
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         private void ClearErrors(string propertyName)

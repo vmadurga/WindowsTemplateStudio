@@ -1,68 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>WinUIDesktopApp</RootNamespace>
 
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>AnyCPU;x86;x64</Platforms>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
-    <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Styles\Page - Copy.xaml" />
-    <None Remove="Styles\TextBlock.xaml" />
-    <None Remove="Styles\_FontSizes.xaml" />
-    <None Remove="Styles\_Thickness - Copy.xaml" />
-    <None Remove="Views\MainPage - Copy.xaml" />
-    <None Remove="Views\MasterDetailDetailControl.xaml" />
-    <None Remove="Views\MasterDetailPage.xaml" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.1" />
+    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />	  
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.5" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3" />
+    <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
-	  <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="8.0.0-preview2" />
-	  <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="8.0.0-preview2" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="8.0.0-preview2" />
-    <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.6" />	  
-    <PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview2.200713.0" />	  
-    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.3-rc3" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.18362.16" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.18362.16" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WinUIDesktopApp.Core\WinUIDesktopApp.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <Page Update="Views\MasterDetailDetailControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <None Update="Views\WebViewPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Views\WebViewPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

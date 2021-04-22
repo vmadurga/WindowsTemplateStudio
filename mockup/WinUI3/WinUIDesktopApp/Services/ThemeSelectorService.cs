@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Windows.Storage;
-using Windows.UI.Core;
 using WinUIDesktopApp.Contracts.Services;
 using WinUIDesktopApp.Helpers;
 

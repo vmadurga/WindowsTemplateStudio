@@ -4,6 +4,8 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Web.WebView2.Core;
+using WinUIDesktopApp.Contracts.ViewModels;
 
 namespace WinUIDesktopApp.ViewModels
 {
@@ -94,7 +96,7 @@ namespace WinUIDesktopApp.ViewModels
         public ICommand OpenInBrowserCommand => _openInBrowserCommand ?? (_openInBrowserCommand = new RelayCommand(async
             () => await Windows.System.Launcher.LaunchUriAsync(Source)));
 
-        public ICommand NavigationCompletedCommand => _navigationCompletedCommand ?? (_navigationCompletedCommand = new RelayCommand<WebView2NavigationCompletedEventArgs>(OnNavigationCompleted));
+        public ICommand NavigationCompletedCommand => _navigationCompletedCommand ?? (_navigationCompletedCommand = new RelayCommand<CoreWebView2WebErrorStatus>(OnNavigationCompleted));
 
         public WebViewViewModel()
         {
@@ -107,12 +109,12 @@ namespace WinUIDesktopApp.ViewModels
             _webView = webView;
         }
 
-        private void OnNavigationCompleted(WebView2NavigationCompletedEventArgs args)
+        private void OnNavigationCompleted(CoreWebView2WebErrorStatus args)
         {
             IsLoading = false;
             OnPropertyChanged(nameof(BrowserBackCommand));
             OnPropertyChanged(nameof(BrowserForwardCommand));
-            if (args.WebErrorStatus != default)
+            if (args != default)
             {
                 // Use `e.WebErrorStatus` to vary the displayed message based on the error reason
                 IsShowingFailedMessage = true;

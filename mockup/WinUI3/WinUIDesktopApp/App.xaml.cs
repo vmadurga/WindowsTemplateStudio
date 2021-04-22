@@ -22,8 +22,7 @@ namespace WinUIDesktopApp
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
-            Ioc.Default.ConfigureServices(ConfigureServices);
+            Ioc.Default.ConfigureServices(ConfigureServices());
             UnhandledException += App_UnhandledException;
         }
 
@@ -37,19 +36,10 @@ namespace WinUIDesktopApp
             await activationService.ActivateAsync(args);
         }
 
-        protected override async void OnActivated(Windows.ApplicationModel.Activation.IActivatedEventArgs args)
+        private System.IServiceProvider ConfigureServices()
         {
-            base.OnActivated(args);
-            var activationService = Ioc.Default.GetService<IActivationService>();
-            await activationService.ActivateAsync(args);
-        }
+            var services = new ServiceCollection();
 
-        private void OnSuspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
-        {
-        }
-
-        private void ConfigureServices(IServiceCollection services)
-        {
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
@@ -93,6 +83,8 @@ namespace WinUIDesktopApp
 
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
+
+            return services.BuildServiceProvider();
         }
     }
 }
